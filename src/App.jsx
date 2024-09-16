@@ -26,12 +26,21 @@ function App() {
     }
     setCartCounts(newCartCounts);
 }
+const handleRemoveItem = (index) => {
+  const newCartCounts = [...cartCounts];
+  newCartCounts[index] = 0;
+  setCartCounts(newCartCounts);
+
+  setSelectedProductIds(selectedProductIds.filter(id => id !== index));
+};
+const totalOrderPrice = cartCounts.reduce((acc, count, index) => acc + count * data[index].price, 0);
+
 
   return (
     <div>
-      <div className='flex justify-center w-full items-start gap-1'>
+      <div className='flex justify-center w-full items-start'>
         <div className='flex flex-col justify-center' style={{ width: '75%' }}>
-          <h1 className='font-semibold text-2xl'>Desserts</h1>
+          <h1 className='font-bold text-3xl mb-5'>Desserts</h1>
           <div className='flex flex-wrap gap-7 w-full relative'>
             {data.map((product, index) => (
               <ul key={index}>
@@ -40,19 +49,19 @@ function App() {
                   
                     {cartCounts[index] > 0 ? (
                       <div className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border hover:bg-orange-500  w-fit flex justify-center items-center text-center mx-auto gap-7 rounded-2xl px-4 py-2`}>
-                       <div  className='outline p-1 w-5 text-center flex justify-center items-center h-5 outline-2 outline-white  rounded-full'>
-                        <img onClick={() => handleDecrease(index)} className='text-red-600 border rounded-lg' src="./assets/images/icon-decrement-quantity.svg" alt="decrease" />
+                       <div onClick={() => handleDecrease(index)} className='outline p-1 w-5 text-center group cursor-pointer flex justify-center items-center h-5 outline-2 outline-white  rounded-full'>
+                        <img  className='text-red-600 border rounded-lg hover:text-orange-500' src="./assets/images/icon-decrement-quantity.svg" alt="decrease" />
                         </div>
                         <span className='text-white'>{cartCounts[index]}</span>
-                        <div  className='flex  outline p-1 w-5justify-center h-5 outline-white rounded-full items-center'>
-                        <img onClick={() => handleIncrease(index)} className='text-red-600' src="public/assets/images/icon-increment-quantity.svg" alt="increase" />
+                        <div onClick={() => handleIncrease(index)}  className='flex  outline p-1 w-5justify-center h-5 outline-white  cursor-pointer rounded-full items-center'>
+                        <img  className='text-red-600' src="public/assets/images/icon-increment-quantity.svg" alt="increase" />
                       </div>
                       </div>
                     ) : (
                       <>
                       <button
                         onClick={() => handleAddToCart(index)}
-                        className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border hover:bg-orange-500 flex justify-center items-center text-center mx-auto  rounded-2xl px-4 py-2`}
+                        className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border border-transprent transition-all duration-300 hover:border-orange-500 hover:text-orange-500 flex justify-center items-center text-center mx-auto  rounded-2xl px-4 py-2`}
                       >
                         <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart" />
                            Add to Cart
@@ -60,10 +69,10 @@ function App() {
                       </>
 
                     )}
-                  <div>
+                  <div className='mt-3'>
                     <p style={{ opacity: '0.7' }}>{product.category}</p>
                     <p>{product.name}</p>
-                    <p className='text-orange-500'>${product.price}</p>
+                    <p className='text-orange-500 font-bold'>${product.price.toFixed(2)}</p>
                   </div>
                 </li>
               </ul>
@@ -71,8 +80,8 @@ function App() {
           </div>
         </div>
 
-        <div className='bg-white p-6 rounded-lg h-60' style={{ width: '25%' }}>
-          <h1 className='text-orange-500 font-bold'>
+        <div className='bg-white p-6 rounded-lg h-auto' style={{ width: '30%' }}>
+          <h1 className='text-orange-500 font-bold mb-6'>
             Your Cart ({cartCounts.reduce((acc, count) => acc + count, 0)})
           </h1>
           {cartCounts.every(count => count === 0) ? (
@@ -81,14 +90,32 @@ function App() {
               <p>Your added items will appear here</p>
             </div>
           ) : (
-            <div>
+            <div className='divide-y-2'>
               {data.map((product, index) => 
                 cartCounts[index] > 0 && (
-                  <div key={index}>
-                    <p>{product.name} x {cartCounts[index]}</p>
+                  <div className='divide-y-2  mb-4'>
+                  <div key={index} >
+                    <p>{product.name}</p>
+                    <div className='flex justify-between items-center'>
+                      <div className='flex justify-between gap-3'>
+                      <span>x{cartCounts[index]}</span>
+                      <span>@ ${product.price}</span>
+                      <span>${product.price * cartCounts[index].toFixed(2)}</span>
+                    </div>
+                    <img onClick={() => {handleRemoveItem(index)}} src="./assets/images/icon-remove-item.svg" alt="icon-remove-item" />
+                  </div>
+                  </div>
                   </div>
                 )
               )}
+               <div className='flex justify-between  items-center'>
+                 <span className='mt-10'>Order Total</span> <span className='mt-10'> ${totalOrderPrice}</span>
+              </div>
+              <div className='bg-orange-50 flex justify-center mt-10 p-2 gap-1 rounded-lg'>
+                <img src="./assets/images/icon-carbon-neutral.svg" alt="icon-carbon-neutral" />
+                <span>This is a carbon-neutrak delivery</span>
+              </div>
+              <button className='bg-orange-700 w-full p-3 mt-6 rounded-full text-white'>Confirm Order</button>
             </div>
           )}
         </div>
