@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply mx-40 mt-10 bg-rose-50;
+  @apply mx-36 mb-10 mt-10 bg-rose-50;
 }
