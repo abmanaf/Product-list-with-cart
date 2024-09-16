@@ -71,7 +71,7 @@ const handleModalClose = () => {
                         </div>
                         <span className='text-white'>{cartCounts[index]}</span>
                         <div onClick={() => handleIncrease(index)}  className='flex  outline p-1 w-5justify-center h-5 outline-white  cursor-pointer rounded-full items-center'>
-                        <img  className='text-red-600' src="public/assets/images/icon-increment-quantity.svg" alt="increase" />
+                        <img  className='text-red-600' src="./assets/images/icon-increment-quantity.svg" alt="increase" />
                       </div>
                       </div>
                     ) : (
