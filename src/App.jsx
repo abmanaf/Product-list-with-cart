@@ -55,14 +55,14 @@ const handleModalClose = () => {
 }
   return (
     <div>
-      <div className='flex justify-center w-full items-start'>
-        <div className='flex flex-col justify-center' style={{ width: '75%' }}>
+      <div className='flex flex-col md:flex-row justify-center w-full gap-2 xl:gap-1 items-start'>
+        <div className='flex flex-col justify-center md:w-3/4'>
           <h1 className='font-bold text-3xl mb-5'>Desserts</h1>
-          <div className='flex flex-wrap gap-7 w-full relative'>
+          <div className='flex flex-wrap  gap-7 w-full relative'>
             {data.map((product, index) => (
               <ul key={index}>
                 <li>
-                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-500 " : ""} w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
+                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-500 " : ""}w-fit md:w-48 lg:w-52 xl:w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
                   
                     {cartCounts[index] > 0 ? (
                       <div className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border hover:bg-orange-500  w-fit flex justify-center items-center text-center mx-auto gap-7 rounded-2xl px-4 py-2`}>
@@ -97,14 +97,14 @@ const handleModalClose = () => {
           </div>
         </div>
 
-        <div className='bg-white p-6 rounded-lg h-auto' style={{ width: '30%' }}>
+        <div className='bg-white p-6 rounded-lg h-auto w-full md:w-[45%] lg:w-[30%]'>
           <h1 className='text-orange-500 font-bold mb-6'>
             Your Cart ({cartCounts.reduce((acc, count) => acc + count, 0)})
           </h1>
           {cartCounts.every(count => count === 0) ? (
             <div className='text-center'>
               <img className='mx-auto' src="./assets/images/illustration-empty-cart.svg" alt="empty cart" />
-              <p>Your added items will appear here</p>
+              <p className='text-sm lg:text-lg'>Your added items will appear here</p>
             </div>
           ) : (
             <div className='divide-y-2'>
@@ -130,7 +130,7 @@ const handleModalClose = () => {
               </div>
               <div className='bg-orange-50 flex justify-center mt-10 p-2 gap-1 rounded-lg'>
                 <img src="./assets/images/icon-carbon-neutral.svg" alt="icon-carbon-neutral" />
-                <span>This is a carbon-neutrak delivery</span>
+                <span>This is a carbon-neutral delivery</span>
               </div>
               <button className='bg-orange-700 w-full p-3 mt-6 rounded-full text-white' onClick={handleSubmitOrder}>Confirm Order</button>
             </div>
@@ -144,7 +144,6 @@ const handleModalClose = () => {
           selectedProducts={selectedProducts}
           cartCounts={cartCounts}
           totalOrderPrice={totalOrderPrice}
-          //setSelectedProduct(null);
         />
       )}
     </div>
