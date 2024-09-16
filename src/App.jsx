@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import data from './data/data.json';
+import Modal from './Modal';
 
 function App() {
   const [cartCounts, setCartCounts] = useState(new Array(data.length).fill(0)); 
   const [selectedProductIds, setSelectedProductIds] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
   const handleAddToCart = (index) => {
     const newCartCounts = [...cartCounts];
@@ -35,7 +38,21 @@ const handleRemoveItem = (index) => {
 };
 const totalOrderPrice = cartCounts.reduce((acc, count, index) => acc + count * data[index].price, 0);
 
+const handleSubmitOrder = (e) => {
+  e.preventDefault()
+  setShowModal(true)
+  setOrderPlaced(true);
+  //setCartCounts([])
 
+}
+const selectedProducts = data.filter((_, index) => cartCounts[index] > 0);
+
+const handleModalClose = () => {
+  setShowModal(false);
+  setOrderPlaced(false);
+  setCartCounts(new Array(data.length).fill(0)); 
+  setSelectedProductIds([]);
+}
   return (
     <div>
       <div className='flex justify-center w-full items-start'>
@@ -109,17 +126,27 @@ const totalOrderPrice = cartCounts.reduce((acc, count, index) => acc + count * d
                 )
               )}
                <div className='flex justify-between  items-center'>
-                 <span className='mt-10'>Order Total</span> <span className='mt-10'> ${totalOrderPrice}</span>
+                 <span className='mt-10'>Order Total</span> <span className='mt-10 font-bold text-xl'> ${totalOrderPrice}</span>
               </div>
               <div className='bg-orange-50 flex justify-center mt-10 p-2 gap-1 rounded-lg'>
                 <img src="./assets/images/icon-carbon-neutral.svg" alt="icon-carbon-neutral" />
                 <span>This is a carbon-neutrak delivery</span>
               </div>
-              <button className='bg-orange-700 w-full p-3 mt-6 rounded-full text-white'>Confirm Order</button>
+              <button className='bg-orange-700 w-full p-3 mt-6 rounded-full text-white' onClick={handleSubmitOrder}>Confirm Order</button>
             </div>
           )}
         </div>
       </div>
+      {orderPlaced && (
+        <Modal
+          show={showModal}
+          onClose={handleModalClose}
+          selectedProducts={selectedProducts}
+          cartCounts={cartCounts}
+          totalOrderPrice={totalOrderPrice}
+          //setSelectedProduct(null);
+        />
+      )}
     </div>
   );
 }
