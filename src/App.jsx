@@ -71,7 +71,7 @@ const handleModalClose = () => {
                         <img  className='text-red-600 border w-5 h-5 p-1 rounded-full' src="./assets/images/icon-decrement-quantity.svg" alt="decrease" />
                         </div>
                         <span className='text-white'>{cartCounts[index]}</span>
-                        <div onClick={() => handleIncrease(index)}  className='p-1 text-center group cursor-pointer flex justify-center items-center '>
+                        <div onClick={() => handleIncrease(index)}  className='p-1 text-center group cursor-pointer flex justify-center items-center'>
                         <img  className='text-red-600 border p-1 w-5 h-5 rounded-full hover:text-orange-500 ' src="./assets/images/icon-increment-quantity.svg" alt="increase" />
                       </div>
                       </div>
@@ -117,11 +117,11 @@ const handleModalClose = () => {
                     <p>{product.name}</p>
                     <div className='flex justify-between items-center'>
                       <div className='flex justify-between gap-3'>
-                      <span>x{cartCounts[index]}</span>
-                      <span>@ ${product.price.toFixed(2)}</span>
-                      <span>${(product.price * cartCounts[index]).toFixed(2)}</span>
+                      <span className='text-orange-500 font-semibold'>x{cartCounts[index]}</span>
+                      <span className='text-rose-300'>@ ${product.price.toFixed(2)}</span>
+                      <span className='text-rose-300 font-semibold'>${(product.price * cartCounts[index]).toFixed(2)}</span>
                     </div>
-                    <img onClick={() => {handleRemoveItem(index)}} src="./assets/images/icon-remove-item.svg" alt="icon-remove-item" />
+                    <img className='p-1 border-2 border-transparent border-rose-200 rounded-full cursor-pointer' onClick={() => {handleRemoveItem(index)}} src="./assets/images/icon-remove-item.svg" alt="icon-remove-item" />
                   </div>
                   </div>
                   </div>
