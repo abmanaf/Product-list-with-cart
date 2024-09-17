@@ -63,7 +63,7 @@ const handleModalClose = () => {
               <ul key={index}>
                 <li >
                   <div className='relative'>
-                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-500 " : ""} w-fit md:w-48 lg:w-52 xl:w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
+                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-500 rounded-xl" : ""} w-fit md:w-48 lg:w-52 xl:w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
                   <div className='absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-full flex justify-center'>
                     {cartCounts[index] > 0 ? (
                       <div className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border hover:bg-orange-500  w-fit flex justify-center items-center text-center mx-auto gap-7 rounded-2xl px-4 py-2`}>
@@ -88,7 +88,7 @@ const handleModalClose = () => {
                     )}
                     </div>
                   </div>
-                  <div className='mt-3'>
+                  <div className='mt-7'>
                     <p style={{ opacity: '0.7' }}>{product.category}</p>
                     <p>{product.name}</p>
                     <p className='text-orange-500 font-bold'>${product.price.toFixed(2)}</p>
@@ -118,8 +118,8 @@ const handleModalClose = () => {
                     <div className='flex justify-between items-center'>
                       <div className='flex justify-between gap-3'>
                       <span>x{cartCounts[index]}</span>
-                      <span>@ ${product.price}</span>
-                      <span>${product.price * cartCounts[index].toFixed(2)}</span>
+                      <span>@ ${product.price.toFixed(2)}</span>
+                      <span>${(product.price * cartCounts[index]).toFixed(2)}</span>
                     </div>
                     <img onClick={() => {handleRemoveItem(index)}} src="./assets/images/icon-remove-item.svg" alt="icon-remove-item" />
                   </div>
@@ -128,7 +128,7 @@ const handleModalClose = () => {
                 )
               )}
                <div className='flex justify-between  items-center'>
-                 <span className='mt-10'>Order Total</span> <span className='mt-10 font-bold text-xl'> ${totalOrderPrice}</span>
+                 <span className='mt-10'>Order Total</span> <span className='mt-10 font-bold text-xl'> ${totalOrderPrice.toFixed(2)}</span>
               </div>
               <div className='bg-orange-50 flex justify-center mt-10 p-2 gap-1 rounded-lg'>
                 <img src="./assets/images/icon-carbon-neutral.svg" alt="icon-carbon-neutral" />
