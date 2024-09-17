@@ -67,12 +67,12 @@ const handleModalClose = () => {
                   <div className='absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-full flex justify-center'>
                     {cartCounts[index] > 0 ? (
                       <div className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border hover:bg-orange-500  w-fit flex justify-center items-center text-center mx-auto gap-7 rounded-2xl px-4 py-2`}>
-                       <div onClick={() => handleDecrease(index)} className='outline p-1 w-5 text-center group cursor-pointer flex justify-center items-center h-5 outline-2 outline-white  rounded-full'>
-                        <img  className='text-red-600 border rounded-lg hover:text-orange-500' src="./assets/images/icon-decrement-quantity.svg" alt="decrease" />
+                       <div onClick={() => handleDecrease(index)} className='text-center group cursor-pointer flex justify-center items-center'>
+                        <img  className='text-red-600 border w-5 h-5 p-1 rounded-full' src="./assets/images/icon-decrement-quantity.svg" alt="decrease" />
                         </div>
                         <span className='text-white'>{cartCounts[index]}</span>
-                        <div onClick={() => handleIncrease(index)}  className='flex  outline p-1 w-5justify-center h-5 outline-white  cursor-pointer rounded-full items-center'>
-                        <img  className='text-red-600' src="./assets/images/icon-increment-quantity.svg" alt="increase" />
+                        <div onClick={() => handleIncrease(index)}  className='p-1 text-center group cursor-pointer flex justify-center items-center '>
+                        <img  className='text-red-600 border p-1 w-5 h-5 rounded-full hover:text-orange-500 ' src="./assets/images/icon-increment-quantity.svg" alt="increase" />
                       </div>
                       </div>
                     ) : (
