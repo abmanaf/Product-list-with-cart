@@ -61,9 +61,10 @@ const handleModalClose = () => {
           <div className='flex flex-wrap  gap-7 w-full relative'>
             {data.map((product, index) => (
               <ul key={index}>
-                <li>
-                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-500 " : ""}w-fit md:w-48 lg:w-52 xl:w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
-                  
+                <li >
+                  <div className='relative'>
+                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-500 " : ""} w-fit md:w-48 lg:w-52 xl:w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
+                  <div className='absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-full flex justify-center'>
                     {cartCounts[index] > 0 ? (
                       <div className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border hover:bg-orange-500  w-fit flex justify-center items-center text-center mx-auto gap-7 rounded-2xl px-4 py-2`}>
                        <div onClick={() => handleDecrease(index)} className='outline p-1 w-5 text-center group cursor-pointer flex justify-center items-center h-5 outline-2 outline-white  rounded-full'>
@@ -84,8 +85,9 @@ const handleModalClose = () => {
                            Add to Cart
                         </button>
                       </>
-
                     )}
+                    </div>
+                  </div>
                   <div className='mt-3'>
                     <p style={{ opacity: '0.7' }}>{product.category}</p>
                     <p>{product.name}</p>
