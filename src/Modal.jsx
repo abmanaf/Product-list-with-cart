@@ -20,7 +20,7 @@ function Modal({ show, onClose, selectedProducts, cartCounts, totalOrderPrice })
                         return (
                             <div className="flex justify-between items-center  p-2 rounded-lg mb-1" key={product.name}> 
                             <div className="flex items-center  gap-3">
-                                <img className="w-10 h-10" src={product.image.thumbnail} alt={product.image.name} />
+                                <img className="w-10 h-10 rounded-md" src={product.image.thumbnail} alt={product.image.name} />
                                 <div className="flex flex-col">
                                 <span>{product.name}</span>
                                 <div className="flex gap-2">
@@ -40,7 +40,6 @@ function Modal({ show, onClose, selectedProducts, cartCounts, totalOrderPrice })
                         <span className="font-bold">${totalOrderPrice.toFixed(2)}</span>
                     </div>
                 </div>
-                
         </div>
         <div
           className="modal-button"
