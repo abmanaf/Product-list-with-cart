@@ -13,7 +13,7 @@ function Modal({ show, onClose, selectedProducts, cartCounts, totalOrderPrice })
         <div style={{ textAlign: "start" }} >
             <img className="w-10" src="./assets/images/icon-order-confirmed.svg" alt="icon-order-confirmed" />
             <h1 className="text-3xl font-bold mt-4 mb-2">Order confirmed</h1>
-            <p className="mb-6">We hope you enjoy your food!</p>
+            <p className="mb-6 text-orange-500">We hope you enjoy your food!</p>
             <div className="bg-orange-50 py-5">
                 {selectedProducts.map((product) => {
                     const originalIndex = data.findIndex((item) => item.name === product.name); 
@@ -36,7 +36,7 @@ function Modal({ show, onClose, selectedProducts, cartCounts, totalOrderPrice })
                         );
                     })}
                      <div className="flex justify-between items-center px-2 mt-5">
-                        <span>Order Total</span>
+                        <span className="font-bold">Order Total</span>
                         <span className="font-bold">${totalOrderPrice.toFixed(2)}</span>
                     </div>
                 </div>
