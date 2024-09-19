@@ -121,7 +121,7 @@ const handleModalClose = () => {
                       <span className='text-red-900'>@ ${product.price.toFixed(2)}</span>
                       <span className='text-red-900 font-semibold'>${(product.price * cartCounts[index]).toFixed(2)}</span>
                     </div>
-                    <img className='p-1 border border-transparent border-red-900 rounded-full cursor-pointer' onClick={() => {handleRemoveItem(index)}} src="./assets/images/icon-remove-item.svg" alt="icon-remove-item" />
+                    <img className='p-1 outline outline-1 outline-red-900 rounded-full cursor-pointer' onClick={() => {handleRemoveItem(index)}} src="./assets/images/icon-remove-item.svg" alt="icon-remove-item" />
                   </div>
                   </div>
                   </div>
