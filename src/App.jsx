@@ -63,23 +63,23 @@ const handleModalClose = () => {
               <ul key={index}>
                 <li >
                   <div className='relative'>
-                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-500 rounded-xl" : ""} w-fit md:w-48 lg:w-52 xl:w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
+                  <img className={`list ${cartCounts[index] > 0  ? "  outline outline-2 outline-orange-700 rounded-xl" : ""} w-fit md:w-48 lg:w-52 xl:w-64 rounded-xl`} src={product.image.desktop} alt={product.name} />
                   <div className='absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-full flex justify-center'>
                     {cartCounts[index] > 0 ? (
-                      <div className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border hover:bg-orange-500  w-fit flex justify-center items-center text-center mx-auto gap-7 rounded-2xl px-4 py-2`}>
+                      <div className={`list ${cartCounts[index] > 0 ? "bg-orange-700 " : "bg-white"} border   w-fit flex justify-center items-center text-center mx-auto gap-7 rounded-full px-5 py-2`}>
                        <div onClick={() => handleDecrease(index)} className='text-center group cursor-pointer flex justify-center items-center'>
                         <img  className='text-red-600 border w-5 h-5 p-1 rounded-full' src="./assets/images/icon-decrement-quantity.svg" alt="decrease" />
                         </div>
                         <span className='text-white'>{cartCounts[index]}</span>
                         <div onClick={() => handleIncrease(index)}  className='p-1 text-center group cursor-pointer flex justify-center items-center'>
-                        <img  className='text-red-600 border p-1 w-5 h-5 rounded-full hover:text-orange-500 ' src="./assets/images/icon-increment-quantity.svg" alt="increase" />
+                        <img  className='text-red-600 border p-1 w-5 h-5 rounded-full  ' src="./assets/images/icon-increment-quantity.svg" alt="increase" />
                       </div>
                       </div>
                     ) : (
                       <>
                       <button
                         onClick={() => handleAddToCart(index)}
-                        className={`list ${cartCounts[index] > 0 ? "bg-orange-500 " : "bg-white"} border border-transprent transition-all duration-300 hover:border-orange-500 hover:text-orange-500 flex justify-center items-center text-center mx-auto  rounded-2xl px-4 py-2`}
+                        className={`list ${cartCounts[index] > 0 ? "bg-orange-700 " : "bg-white"} border border-orange-500 transition-all duration-30 hover:text-orange-700 flex justify-center items-center gap-2 text-center mx-auto  rounded-full px-5 py-2`}
                       >
                         <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart" />
                            Add to Cart
@@ -118,8 +118,8 @@ const handleModalClose = () => {
                     <div className='flex justify-between items-center'>
                       <div className='flex justify-between gap-3'>
                       <span className='text-orange-500 font-semibold'>x{cartCounts[index]}</span>
-                      <span className='text-rose-300'>@ ${product.price.toFixed(2)}</span>
-                      <span className='text-rose-300 font-semibold'>${(product.price * cartCounts[index]).toFixed(2)}</span>
+                      <span className='text-red-900'>@ ${product.price.toFixed(2)}</span>
+                      <span className='text-red-900 font-semibold'>${(product.price * cartCounts[index]).toFixed(2)}</span>
                     </div>
                     <img className='p-1 border-2 border-transparent border-rose-200 rounded-full cursor-pointer' onClick={() => {handleRemoveItem(index)}} src="./assets/images/icon-remove-item.svg" alt="icon-remove-item" />
                   </div>
