@@ -9,12 +9,12 @@ function Modal({ show, onClose, selectedProducts, cartCounts, totalOrderPrice })
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content w-96 p-6 rounded-lg my-10 mt-5 mb-5">
+      <div className="modal-content w-[450px] p-6 rounded-lg my-10 mt-5 mb-5">
         <div style={{ textAlign: "start" }} >
             <img className="w-10" src="./assets/images/icon-order-confirmed.svg" alt="icon-order-confirmed" />
             <h1 className="text-3xl font-bold mt-4 mb-2">Order confirmed</h1>
-            <p className="mb-6 text-orange-500">We hope you enjoy your food!</p>
-            <div className="bg-orange-50 py-5">
+            <p className="mb-6 text-red-800">We hope you enjoy your food!</p>
+            <div className="bg-orange-50 py-5 rounded-lg">
                 {selectedProducts.map((product) => {
                     const originalIndex = data.findIndex((item) => item.name === product.name); 
                         return (
@@ -22,15 +22,15 @@ function Modal({ show, onClose, selectedProducts, cartCounts, totalOrderPrice })
                             <div className="flex items-center  gap-3">
                                 <img className="w-10 h-10 rounded-md" src={product.image.thumbnail} alt={product.image.name} />
                                 <div className="flex flex-col">
-                                <span>{product.name}</span>
+                                <span className="">{product.name}</span>
                                 <div className="flex gap-2">
-                                    <span>{cartCounts[originalIndex]}x</span>  
-                                    <span>@ ${product.price.toFixed(2)}</span>
+                                    <span className=" text-orange-500">{cartCounts[originalIndex]}x</span>  
+                                    <span className="text-red-900">@ ${product.price.toFixed(2)}</span>
                                 </div>
                                 </div>
                             </div>
                             <div>
-                                <span>${(cartCounts[originalIndex] * product.price).toFixed(2)}</span>  
+                                <span className="text-red-900 font-semibold">${(cartCounts[originalIndex] * product.price).toFixed(2)}</span>  
                             </div>
                             </div>
                         );
